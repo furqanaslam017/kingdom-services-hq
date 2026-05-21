@@ -38,11 +38,12 @@ function GalleryPage() {
 
   return (
     <>
-      <section className="px-6 pt-20 pb-8 md:px-10 md:pt-28">
-        <div className="mx-auto max-w-3xl text-center">
+      <section className="relative overflow-hidden px-6 pt-20 pb-8 md:px-10 md:pt-28">
+        <div className="pointer-events-none absolute -top-40 left-1/2 h-[400px] w-[600px] -translate-x-1/2 rounded-full bg-primary/5 blur-3xl" />
+        <div className="relative mx-auto max-w-3xl text-center">
           <SectionHeader eyebrow="Gallery" title="Recent" italic="work" />
         </div>
-        <div className="mx-auto mt-10 flex max-w-3xl flex-wrap justify-center gap-2">
+        <div className="relative mx-auto mt-10 flex max-w-3xl flex-wrap justify-center gap-2">
           {TABS.map((t) => (
             <button
               key={t}
@@ -54,7 +55,7 @@ function GalleryPage() {
               {tab === t && (
                 <motion.span
                   layoutId="tab-pill"
-                  className="absolute inset-0 rounded-full bg-primary"
+                  className="absolute inset-0 rounded-full bg-primary shadow-md shadow-primary/20"
                   transition={{ type: "spring", stiffness: 350, damping: 30 }}
                 />
               )}
@@ -64,8 +65,9 @@ function GalleryPage() {
         </div>
       </section>
 
-      <section className="px-6 pb-24 md:px-10">
-        <div className="mx-auto max-w-7xl columns-2 gap-4 md:columns-3 lg:columns-4">
+      <section className="relative overflow-hidden px-6 pb-24 md:px-10">
+        <div className="pointer-events-none absolute -bottom-40 -left-40 h-[400px] w-[400px] rounded-full bg-accent/5 blur-3xl" />
+        <div className="relative mx-auto max-w-7xl columns-2 gap-4 md:columns-3 lg:columns-4">
           {ALL.map((src, i) => (
             <motion.button
               key={src}
@@ -74,9 +76,10 @@ function GalleryPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.04 }}
-              className="mb-4 block w-full overflow-hidden rounded-2xl"
+              className="group relative mb-4 block w-full overflow-hidden rounded-2xl"
             >
-              <img src={src} alt="Gallery" loading="lazy" className="w-full" />
+              <img src={src} alt="Gallery" loading="lazy" className="w-full transition-transform duration-700 group-hover:scale-105" />
+              <div className="absolute inset-0 bg-gradient-to-t from-foreground/30 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
             </motion.button>
           ))}
         </div>
@@ -89,12 +92,13 @@ function GalleryPage() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => setLightbox(null)}
-            className="fixed inset-0 z-[100] grid place-items-center bg-foreground/90 p-6 backdrop-blur"
+            className="fixed inset-0 z-[100] grid place-items-center bg-foreground/90 p-6 backdrop-blur-xl"
           >
             <motion.img
-              initial={{ scale: 0.9 }}
-              animate={{ scale: 1 }}
-              exit={{ scale: 0.9 }}
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              transition={{ type: "spring", stiffness: 300, damping: 25 }}
               src={lightbox}
               alt=""
               className="max-h-[90vh] max-w-full rounded-2xl shadow-2xl"

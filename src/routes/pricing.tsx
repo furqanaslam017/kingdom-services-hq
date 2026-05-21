@@ -42,15 +42,16 @@ function PricingPage() {
     <>
       <PricingTeaser />
 
-      <section className="bg-surface-2 px-6 py-24 md:px-10">
-        <div className="mx-auto max-w-3xl">
+      <section className="relative overflow-hidden bg-surface-2 px-6 py-24 md:px-10">
+        <div className="pointer-events-none absolute -top-40 left-1/2 h-[400px] w-[600px] -translate-x-1/2 rounded-full bg-primary/5 blur-3xl" />
+        <div className="relative mx-auto max-w-3xl">
           <SectionHeader eyebrow="Estimate" title="Quick" italic="calculator" />
-          <div className="mt-10 rounded-3xl border border-border bg-surface p-8">
+          <div className="mt-10 rounded-3xl border border-border bg-surface p-8 shadow-elegant">
             <label className="block text-sm font-semibold text-foreground">Service</label>
             <select
               value={service}
               onChange={(e) => setService(e.target.value)}
-              className="mt-2 w-full rounded-xl border border-border bg-background px-4 py-3 text-sm"
+              className="mt-2 w-full rounded-xl border border-border bg-background px-4 py-3 text-sm transition focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
             >
               {["Junk Removal", "Moving Help", "Furniture", "Debris", "Packing", "Scrap Metal"].map((s) => (
                 <option key={s}>{s}</option>
@@ -69,7 +70,7 @@ function PricingPage() {
               className="mt-3 w-full accent-[oklch(0.43_0.21_265)]"
             />
 
-            <div className="mt-8 rounded-2xl bg-primary-light p-6 text-center">
+            <div className="mt-8 rounded-2xl bg-primary-light p-6 text-center ring-1 ring-primary/10">
               <div className="text-xs uppercase tracking-wider text-primary">Estimated range</div>
               <div className="font-display mt-1 text-4xl text-primary">{est}</div>
               <p className="mt-2 text-xs text-muted-foreground">
@@ -80,14 +81,15 @@ function PricingPage() {
         </div>
       </section>
 
-      <section className="px-6 py-24 md:px-10">
-        <div className="mx-auto max-w-3xl">
+      <section className="relative overflow-hidden px-6 py-24 md:px-10">
+        <div className="pointer-events-none absolute -bottom-40 -right-40 h-[400px] w-[400px] rounded-full bg-accent/5 blur-3xl" />
+        <div className="relative mx-auto max-w-3xl">
           <SectionHeader eyebrow="FAQ" title="Pricing" italic="questions" />
           <Accordion type="single" collapsible className="mt-10">
             {FAQ.map(([q, a]) => (
-              <AccordionItem key={q} value={q}>
-                <AccordionTrigger className="text-left text-base font-semibold">{q}</AccordionTrigger>
-                <AccordionContent className="text-muted-foreground">{a}</AccordionContent>
+              <AccordionItem key={q} value={q} className="border-border/60">
+                <AccordionTrigger className="text-left text-base font-semibold transition-colors hover:text-primary">{q}</AccordionTrigger>
+                <AccordionContent className="text-muted-foreground leading-relaxed">{a}</AccordionContent>
               </AccordionItem>
             ))}
           </Accordion>

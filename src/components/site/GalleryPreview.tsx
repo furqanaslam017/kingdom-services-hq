@@ -17,8 +17,11 @@ const PHOTOS = [
 
 export function GalleryPreview() {
   return (
-    <section className="bg-surface-2 px-6 py-24 md:px-10">
-      <div className="mx-auto max-w-7xl">
+    <section className="relative overflow-hidden bg-surface-2 px-6 py-24 md:px-10">
+      {/* Ambient glow */}
+      <div className="pointer-events-none absolute -bottom-40 left-1/2 h-[400px] w-[600px] -translate-x-1/2 rounded-full bg-primary/5 blur-3xl" />
+
+      <div className="relative mx-auto max-w-7xl">
         <ScrollReveal>
           <SectionHeader
             eyebrow="The crew at work"
@@ -34,14 +37,16 @@ export function GalleryPreview() {
               <motion.div
                 whileHover={{ scale: 1.02 }}
                 transition={{ type: "spring", stiffness: 300, damping: 22 }}
-                className="mb-4 overflow-hidden rounded-2xl sm:mb-6"
+                className="group relative mb-4 overflow-hidden rounded-2xl sm:mb-6"
               >
                 <img
                   src={src}
                   alt="Kingdom Come Services crew at work"
                   loading="lazy"
-                  className="h-auto w-full object-cover"
+                  className="h-auto w-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
+                {/* Hover overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-foreground/40 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
               </motion.div>
             </ScrollReveal>
           ))}
@@ -50,9 +55,9 @@ export function GalleryPreview() {
         <div className="mt-10 text-center">
           <Link
             to="/gallery"
-            className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-surface px-6 py-3 text-sm font-semibold text-primary transition hover:bg-primary hover:text-white"
+            className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-surface px-6 py-3 text-sm font-semibold text-primary shadow-sm transition-all duration-300 hover:bg-primary hover:text-white hover:shadow-lg hover:shadow-primary/20"
           >
-            View full gallery <ArrowRight className="h-4 w-4" />
+            View full gallery <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
           </Link>
         </div>
       </div>
