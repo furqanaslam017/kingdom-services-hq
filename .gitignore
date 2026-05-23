@@ -16,6 +16,14 @@ dist-ssr
 .nitro
 *.local
 
+# Environment / secrets
+.env
+.env.local
+
+# Build / deploy artifacts
+.next
+.vercel
+
 # Wrangler / Cloudflare
 .wrangler/
 .dev.vars

@@ -1,5 +1,7 @@
+"use client";
+
 import { motion } from "framer-motion";
-import { Link } from "@tanstack/react-router";
+import Link from "next/link";
 import { PhoneCall, Star } from "lucide-react";
 import { BUSINESS } from "@/lib/services";
 
@@ -76,7 +78,7 @@ export function CTASection() {
           </motion.a>
           <motion.div whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.97 }}>
             <Link
-              to="/booking"
+              href="/booking"
               className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-7 py-3.5 text-sm font-semibold text-white backdrop-blur-md transition-all hover:bg-white/20 hover:border-white/40"
             >
               Book online →

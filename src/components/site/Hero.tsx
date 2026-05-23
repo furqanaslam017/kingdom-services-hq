@@ -1,5 +1,7 @@
+"use client";
+
 import { useEffect, useRef, useState } from "react";
-import { Link } from "@tanstack/react-router";
+import Link from "next/link";
 import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
 import {
   Crown,
@@ -22,9 +24,7 @@ const NAV = [
   { to: "/contact", label: "Contact" },
 ];
 
-// Pexels public CDN — moving truck on a road. Long-form, royalty-free.
-const HERO_VIDEO =
-  "https://videos.pexels.com/video-files/4488751/4488751-uhd_2560_1440_25fps.mp4";
+// Pexels hero background image — moving truck on a road
 const HERO_POSTER =
   "https://images.pexels.com/videos/4488751/free-video-4488751.jpg?auto=compress&cs=tinysrgb&w=1920";
 
@@ -72,18 +72,12 @@ export function Hero() {
 
         {/* Video layer with parallax */}
         <motion.div className="absolute inset-0 h-[120%] w-full" style={{ y: videoY }}>
-          <video
-            ref={videoRef}
+          <img
+            src={HERO_POSTER}
+            alt="Moving truck on the road"
             className="h-full w-full object-cover"
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="metadata"
-            poster={HERO_POSTER}
-          >
-            <source src={HERO_VIDEO} type="video/mp4" />
-          </video>
+            loading="eager"
+          />
         </motion.div>
 
         {/* Brand-tinted overlays — deeper, richer */}
@@ -155,7 +149,7 @@ export function Hero() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.1, duration: 0.6 }}
           >
-            <Link to="/" className="flex items-center gap-2.5 text-white">
+            <Link href="/" className="flex items-center gap-2.5 text-white">
               <span className="grid h-10 w-10 place-items-center rounded-xl bg-white/15 ring-1 ring-white/20 backdrop-blur-md">
                 <Crown className="h-5 w-5" />
               </span>
@@ -174,9 +168,8 @@ export function Hero() {
             {NAV.map((n) => (
               <li key={n.to}>
                 <Link
-                  to={n.to}
+                  href={n.to}
                   className="group relative text-sm text-white/75 transition-colors duration-300 hover:text-white"
-                  activeProps={{ className: "text-white" }}
                 >
                   {n.label}
                   <span className="absolute -bottom-1 left-0 h-px w-full origin-left scale-x-0 bg-white transition-transform duration-300 group-hover:scale-x-100" />
@@ -285,7 +278,7 @@ export function Hero() {
               className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row"
             >
               <Link
-                to="/booking"
+                href="/booking"
                 className="inline-flex items-center gap-2 rounded-full bg-white px-7 py-3.5 text-sm font-semibold text-primary shadow-lg shadow-primary/20 transition-all hover:shadow-xl hover:shadow-primary/30"
               >
                 <Truck className="h-4 w-4" />
@@ -348,7 +341,7 @@ export function Hero() {
               </div>
             </div>
             <Link
-              to="/booking"
+              href="/booking"
               className="mt-3 inline-flex items-center gap-2 self-start rounded-full bg-white py-2 pl-2 pr-4 text-sm font-semibold text-primary transition-transform hover:scale-[1.02]"
             >
               <span className="grid h-7 w-7 place-items-center rounded-full bg-primary">
@@ -449,10 +442,9 @@ export function Hero() {
                 {NAV.map((n) => (
                   <li key={n.to}>
                     <Link
-                      to={n.to}
+                      href={n.to}
                       onClick={() => setOpen(false)}
                       className="block rounded-2xl px-4 py-3 text-base font-medium text-foreground/80 transition hover:bg-muted"
-                      activeProps={{ className: "bg-primary-light text-primary" }}
                     >
                       {n.label}
                     </Link>

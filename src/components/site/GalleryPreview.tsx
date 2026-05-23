@@ -1,5 +1,7 @@
+"use client";
+
 import { motion } from "framer-motion";
-import { Link } from "@tanstack/react-router";
+import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { SectionHeader } from "./SectionHeader";
 import { ScrollReveal } from "./ScrollReveal";
@@ -54,7 +56,7 @@ export function GalleryPreview() {
 
         <div className="mt-10 text-center">
           <Link
-            to="/gallery"
+            href="/gallery"
             className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-surface px-6 py-3 text-sm font-semibold text-primary shadow-sm transition-all duration-300 hover:bg-primary hover:text-white hover:shadow-lg hover:shadow-primary/20"
           >
             View full gallery <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />

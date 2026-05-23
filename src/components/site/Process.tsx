@@ -1,3 +1,5 @@
+"use client";
+
 import { motion } from "framer-motion";
 import { PhoneCall, CalendarCheck, CheckCircle } from "lucide-react";
 import { SectionHeader } from "./SectionHeader";

@@ -1,13 +1,14 @@
-import { Link } from "@tanstack/react-router";
+import Link from "next/link";
 import { Crown, PhoneCall, Mail, MapPin } from "lucide-react";
 import { BUSINESS, CITIES } from "@/lib/services";
+import { SERVICE_DETAILS } from "@/lib/service-detail-data";
 
 export function Footer() {
   return (
     <footer className="mt-24 border-t border-border bg-surface-2">
       <div className="mx-auto grid max-w-7xl gap-12 px-6 py-16 md:grid-cols-4 md:px-10">
         <div className="md:col-span-1">
-          <Link to="/" className="flex items-center gap-2.5">
+          <Link href="/" className="flex items-center gap-2.5">
             <span className="grid h-10 w-10 place-items-center rounded-xl bg-primary text-primary-foreground shadow-md shadow-primary/20">
               <Crown className="h-5 w-5" />
             </span>
@@ -23,12 +24,17 @@ export function Footer() {
 
         <div>
           <h4 className="text-sm font-semibold tracking-wide text-foreground uppercase">Services</h4>
-          <ul className="mt-4 space-y-2.5 text-sm text-muted-foreground">
-            <li><Link to="/services" className="link-underline transition-colors hover:text-primary">Junk Removal</Link></li>
-            <li><Link to="/services" className="link-underline transition-colors hover:text-primary">Moving Help</Link></li>
-            <li><Link to="/services" className="link-underline transition-colors hover:text-primary">Furniture Removal</Link></li>
-            <li><Link to="/services" className="link-underline transition-colors hover:text-primary">Debris Hauling</Link></li>
-            <li><Link to="/services" className="link-underline transition-colors hover:text-primary">Scrap Metal</Link></li>
+          <ul className="mt-4 max-h-60 space-y-2 overflow-y-auto text-sm text-muted-foreground">
+            {SERVICE_DETAILS.map((s) => (
+              <li key={s.slug}>
+                <Link
+                  href={`/services/${s.slug}`}
+                  className="link-underline transition-colors hover:text-primary"
+                >
+                  {s.title}
+                </Link>
+              </li>
+            ))}
           </ul>
         </div>
 
@@ -75,8 +81,8 @@ export function Footer() {
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-2 px-6 py-6 text-xs text-muted-foreground md:flex-row md:px-10">
           <p>© {new Date().getFullYear()} {BUSINESS.name}. All rights reserved.</p>
           <div className="flex items-center gap-4">
-            <Link to="/privacy" className="transition-colors hover:text-foreground">Privacy</Link>
-            <Link to="/terms" className="transition-colors hover:text-foreground">Terms</Link>
+            <Link href="/privacy" className="transition-colors hover:text-foreground">Privacy</Link>
+            <Link href="/terms" className="transition-colors hover:text-foreground">Terms</Link>
             <span className="hidden sm:inline">·</span>
             <span className="hidden sm:inline">Licensed & insured · Jackson, MS</span>
           </div>

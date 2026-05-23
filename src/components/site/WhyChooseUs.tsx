@@ -1,6 +1,8 @@
+"use client";
+
 import { motion } from "framer-motion";
 import { Check } from "lucide-react";
-import { Link } from "@tanstack/react-router";
+import Link from "next/link";
 import { ScrollReveal } from "./ScrollReveal";
 
 const FEATURES = [
@@ -37,7 +39,7 @@ export function WhyChooseUs() {
               work hard, and leave your space spotless.
             </p>
             <Link
-              to="/contact"
+              href="/contact"
               className="mt-8 inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground shadow-lg shadow-primary/20 transition-all hover:bg-primary-dark hover:shadow-xl hover:shadow-primary/30"
             >
               Get Free Quote →

@@ -1,5 +1,7 @@
+"use client";
+
 import { motion } from "framer-motion";
-import { Link } from "@tanstack/react-router";
+import Link from "next/link";
 import { CheckCircle2 } from "lucide-react";
 import { SectionHeader } from "./SectionHeader";
 import { ScrollReveal } from "./ScrollReveal";
@@ -62,7 +64,7 @@ export function PricingTeaser() {
                 ))}
               </ul>
               <Link
-                to="/booking"
+                href="/booking"
                 className="relative mt-8 inline-flex w-full items-center justify-center rounded-full bg-white py-3.5 text-sm font-semibold text-primary shadow-lg shadow-black/10 transition-all hover:bg-white/90 hover:shadow-xl"
               >
                 Book this service
@@ -95,7 +97,7 @@ export function PricingTeaser() {
                 exact distance — confirmed before any work begins.
               </p>
               <Link
-                to="/contact"
+                href="/contact"
                 className="mt-8 inline-flex w-full items-center justify-center rounded-full bg-primary py-3.5 text-sm font-semibold text-primary-foreground shadow-lg shadow-primary/20 transition-all hover:bg-primary-dark hover:shadow-xl hover:shadow-primary/30"
               >
                 Get exact quote

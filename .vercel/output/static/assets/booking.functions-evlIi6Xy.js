@@ -1,1 +1,0 @@
-import{c as e}from"./clock-CmVV6ICA.js";import{q as d}from"./index-DsI4QZ0k.js";const o=e({method:"POST"}).handler(d("4ced895525f4d44d99fd1ed940c1ff3677d98cc2334551a579fa5fe047b84d7d"));export{o as s};

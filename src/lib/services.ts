@@ -16,6 +16,7 @@ export type Service = {
   description: string;
   includes: string[];
   startingPrice: string;
+  image: string;
 };
 
 export const SERVICES: Service[] = [
@@ -34,6 +35,7 @@ export const SERVICES: Service[] = [
       "Site swept clean after",
     ],
     startingPrice: "$250",
+    image: "https://images.unsplash.com/photo-1581579186913-45ac3e6e3dd2?w=800&auto=format&fit=crop",
   },
   {
     slug: "moving",
@@ -50,6 +52,7 @@ export const SERVICES: Service[] = [
       "Careful handling, no rush",
     ],
     startingPrice: "$275",
+    image: "https://images.unsplash.com/photo-1600518464441-9154a4dea21b?w=800&auto=format&fit=crop",
   },
   {
     slug: "furniture-removal",
@@ -66,6 +69,7 @@ export const SERVICES: Service[] = [
       "Same-day available",
     ],
     startingPrice: "$250",
+    image: "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=800&auto=format&fit=crop",
   },
   {
     slug: "debris-hauling",
@@ -82,6 +86,7 @@ export const SERVICES: Service[] = [
       "Licensed disposal sites",
     ],
     startingPrice: "$275",
+    image: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&auto=format&fit=crop",
   },
   {
     slug: "packing-loading",
@@ -98,6 +103,7 @@ export const SERVICES: Service[] = [
       "Hourly or flat rate",
     ],
     startingPrice: "$250",
+    image: "https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=800&auto=format&fit=crop",
   },
   {
     slug: "scrap-metal",
@@ -114,6 +120,7 @@ export const SERVICES: Service[] = [
       "Free quote",
     ],
     startingPrice: "Often free / low",
+    image: "https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?w=800&auto=format&fit=crop",
   },
 ];
 
