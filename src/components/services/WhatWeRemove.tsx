@@ -1,6 +1,7 @@
 "use client";
 
 import { TAB_DATA } from "./tabData";
+import { MagicCard } from "@/components/site/MagicCard";
 
 export function WhatWeRemove() {
   return (
@@ -28,9 +29,9 @@ export function WhatWeRemove() {
               ? [...category.items, ...category.extraItems]
               : category.items;
             return (
-              <div
+              <MagicCard
                 key={category.label}
-                className="rounded-2xl border border-slate-200 bg-slate-50 p-6 transition-all duration-300 hover:border-blue-300 hover:shadow-md"
+                className="rounded-2xl border border-slate-200 bg-slate-50 p-6"
               >
                 <div className="flex items-center gap-3">
                   <Icon className="h-7 w-7 text-[#1E6FFF]" />
@@ -51,7 +52,7 @@ export function WhatWeRemove() {
                     </span>
                   ))}
                 </div>
-              </div>
+              </MagicCard>
             );
           })}
         </div>

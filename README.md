@@ -5,7 +5,7 @@
 Add these to Vercel Dashboard → Project Settings → Environment Variables:
 
 ```
-MONGODB_URI=mongodb+srv://iammughal1234_db_user:T09efkyYtgjTYe0An@kingdomcluster.yszolua.mongodb.net/?appName=kingdomcluster
+MONGODB_URI=mongodb+srv://iammughal1234_db_user:T9efkyYtgjTYe0An@kingdomcluster.yszolua.mongodb.net/?appName=kingdomcluster
 MONGODB_DB=kingdomcluster
 ADMIN_PASSWORD=KCS2024!
 NEXT_PUBLIC_SITE_URL=https://kingdomcomeservices.com

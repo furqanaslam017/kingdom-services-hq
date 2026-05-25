@@ -1,10 +1,7 @@
 "use client";
 
 import {
-  ServicesIntroHero,
-  TrustMarquee,
-  WhatWeRemove,
-  BeforeAfterSection,
+  ServicesTabs,
   HowItWorks,
   WhyChooseUs,
   ServicesCTA,
@@ -13,10 +10,7 @@ import {
 export default function ServicesPage() {
   return (
     <main className="relative">
-      <ServicesIntroHero />
-      <TrustMarquee />
-      <WhatWeRemove />
-      <BeforeAfterSection />
+      <ServicesTabs />
       <HowItWorks />
       <WhyChooseUs />
       <ServicesCTA />

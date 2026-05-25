@@ -1,3 +1,7 @@
+"use client";
+
+import { useState, useEffect } from "react";
+import SplashScreen from "@/components/SplashScreen";
 import { Hero } from "@/components/site/Hero";
 import { TrustStrip } from "@/components/site/Marquee";
 import { ServicesGrid } from "@/components/site/ServicesGrid";
@@ -9,24 +13,26 @@ import { ServiceArea } from "@/components/site/ServiceArea";
 import { GalleryPreview } from "@/components/site/GalleryPreview";
 import { PricingTeaser } from "@/components/site/PricingTeaser";
 import { CTASection } from "@/components/site/CTASection";
-import { Metadata } from "next";
-
-export const metadata: Metadata = {
-  title: "Kingdom Come Services | Junk Removal & Moving in Jackson, MS",
-  description:
-    "Professional junk removal and moving services in Jackson, MS. 3-man crew, 4 years experience, 50-mile service radius. Free estimates same day.",
-  openGraph: {
-    title: "Kingdom Come Services — Jackson, MS",
-    description:
-      "Junk removal & moving help in Jackson, MS. Free estimates, same-day service.",
-    url: "/",
-  },
-  alternates: {
-    canonical: "/",
-  },
-};
 
 export default function Home() {
+  const [showSplash, setShowSplash] = useState(false);
+
+  useEffect(() => {
+    const alreadySeen = localStorage.getItem("kcs_visited_v2");
+    if (!alreadySeen) {
+      setShowSplash(true);
+    }
+  }, []);
+
+  const handleSplashComplete = () => {
+    localStorage.setItem("kcs_visited_v2", "true");
+    setShowSplash(false);
+  };
+
+  if (showSplash) {
+    return <SplashScreen onComplete={handleSplashComplete} />;
+  }
+
   return (
     <>
       <Hero />

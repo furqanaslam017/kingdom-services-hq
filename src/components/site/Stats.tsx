@@ -1,7 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { AnimatedCounter } from "./AnimatedCounter";
+import { MagicCard } from "./MagicCard";
 
 const STATS = [
   { value: 500, suffix: "+", label: "Jobs Completed" },
@@ -36,19 +36,16 @@ export function Stats() {
       <div className="relative mx-auto max-w-7xl px-6 md:px-10">
         <div className="grid grid-cols-2 gap-6 md:grid-cols-4">
           {STATS.map((s, i) => (
-            <motion.div
+            <MagicCard
               key={s.label}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ delay: i * 0.12, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-              className="group relative rounded-2xl border border-white/10 bg-white/5 p-6 text-center backdrop-blur-sm transition-all duration-500 hover:border-white/20 hover:bg-white/10 md:rounded-3xl md:p-8"
+              className="group rounded-2xl border border-white/10 bg-white/5 p-6 text-center backdrop-blur-sm md:rounded-3xl md:p-8"
+              glowColor="100, 200, 255"
             >
               <div className="font-display text-5xl text-white md:text-6xl">
                 <AnimatedCounter to={s.value} suffix={s.suffix} />
               </div>
               <p className="mt-2 text-sm font-medium text-white/60 transition-colors group-hover:text-white/80">{s.label}</p>
-            </motion.div>
+            </MagicCard>
           ))}
         </div>
       </div>

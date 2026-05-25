@@ -1,28 +1,16 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useRef } from "react";
 import Link from "next/link";
-import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import {
-  Crown,
-  Menu,
   PhoneCall,
   Star,
   Truck,
   MapPin,
-  X,
 } from "lucide-react";
 import { BUSINESS } from "@/lib/services";
 import { BrandedTruck } from "./BrandedTruck";
-
-const NAV = [
-  { to: "/", label: "Home" },
-  { to: "/services", label: "Services" },
-  { to: "/about", label: "About" },
-  { to: "/gallery", label: "Gallery" },
-  { to: "/pricing", label: "Pricing" },
-  { to: "/contact", label: "Contact" },
-];
 
 // Pexels hero background image — moving truck on a road
 const HERO_POSTER =
@@ -40,9 +28,7 @@ const ORBS = [
 ];
 
 export function Hero() {
-  const [open, setOpen] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
-  const videoRef = useRef<HTMLVideoElement>(null);
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -52,14 +38,6 @@ export function Hero() {
   const videoY = useTransform(scrollYProgress, [0, 1], ["0%", "25%"]);
   const overlayOpacity = useTransform(scrollYProgress, [0, 0.6], [0, 0.85]);
   const contentY = useTransform(scrollYProgress, [0, 1], ["0%", "15%"]);
-
-  // Lock body scroll while mobile menu is open
-  useEffect(() => {
-    document.body.style.overflow = open ? "hidden" : "";
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [open]);
 
   return (
     <section
@@ -141,67 +119,6 @@ export function Hero() {
               "radial-gradient(ellipse at center, transparent 40%, oklch(0.12 0.06 265 / 0.45) 100%)",
           }}
         />
-
-        {/* ===== NAVBAR ===== */}
-        <nav className="relative z-30 flex w-full items-center justify-between px-6 py-5 md:px-10">
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.1, duration: 0.6 }}
-          >
-            <Link href="/" className="flex items-center gap-2.5 text-white">
-              <span className="grid h-10 w-10 place-items-center rounded-xl bg-white/15 ring-1 ring-white/20 backdrop-blur-md">
-                <Crown className="h-5 w-5" />
-              </span>
-              <span className="font-display text-lg leading-none tracking-tight">
-                Kingdom Come
-              </span>
-            </Link>
-          </motion.div>
-
-          <motion.ul
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2, duration: 0.6 }}
-            className="hidden items-center gap-8 md:flex"
-          >
-            {NAV.map((n) => (
-              <li key={n.to}>
-                <Link
-                  href={n.to}
-                  className="group relative text-sm text-white/75 transition-colors duration-300 hover:text-white"
-                >
-                  {n.label}
-                  <span className="absolute -bottom-1 left-0 h-px w-full origin-left scale-x-0 bg-white transition-transform duration-300 group-hover:scale-x-100" />
-                </Link>
-              </li>
-            ))}
-          </motion.ul>
-
-          <div className="flex items-center gap-2">
-            <motion.a
-              href={BUSINESS.phoneHref}
-              whileHover={{ scale: 1.04 }}
-              whileTap={{ scale: 0.97 }}
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.3, duration: 0.6 }}
-              className="hidden items-center gap-2 rounded-full bg-white py-2.5 pl-2.5 pr-5 text-sm font-semibold text-primary shadow-lg shadow-primary/20 transition-shadow hover:shadow-xl hover:shadow-primary/30 md:inline-flex"
-            >
-              <span className="grid h-7 w-7 place-items-center rounded-full bg-primary">
-                <PhoneCall className="h-3.5 w-3.5 text-white" />
-              </span>
-              Get Free Quote
-            </motion.a>
-            <button
-              onClick={() => setOpen(true)}
-              aria-label="Open menu"
-              className="grid h-10 w-10 place-items-center rounded-full bg-white/15 text-white ring-1 ring-white/20 backdrop-blur-md md:hidden"
-            >
-              <Menu className="h-5 w-5" />
-            </button>
-          </div>
-        </nav>
 
         {/* ===== CENTER CONTENT ===== */}
         <motion.div
@@ -410,57 +327,6 @@ export function Hero() {
         </div>
       </div>
 
-      {/* ===== MOBILE MENU ===== */}
-      <AnimatePresence>
-        {open && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[80] bg-foreground/60 backdrop-blur-sm"
-            onClick={() => setOpen(false)}
-          >
-            <motion.div
-              initial={{ y: -40, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              exit={{ y: -40, opacity: 0 }}
-              transition={{ type: "spring", damping: 22, stiffness: 250 }}
-              onClick={(e) => e.stopPropagation()}
-              className="m-3 rounded-3xl bg-background p-6 shadow-elegant"
-            >
-              <div className="mb-6 flex items-center justify-between">
-                <span className="font-display text-lg">Menu</span>
-                <button
-                  onClick={() => setOpen(false)}
-                  className="grid h-10 w-10 place-items-center rounded-full border border-border"
-                  aria-label="Close menu"
-                >
-                  <X className="h-5 w-5" />
-                </button>
-              </div>
-              <ul className="space-y-1">
-                {NAV.map((n) => (
-                  <li key={n.to}>
-                    <Link
-                      href={n.to}
-                      onClick={() => setOpen(false)}
-                      className="block rounded-2xl px-4 py-3 text-base font-medium text-foreground/80 transition hover:bg-muted"
-                    >
-                      {n.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-              <a
-                href={BUSINESS.phoneHref}
-                className="mt-6 flex items-center justify-center gap-2 rounded-full bg-primary py-3 text-sm font-semibold text-primary-foreground"
-              >
-                <PhoneCall className="h-4 w-4" /> Call {BUSINESS.phone}
-              </a>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </section>
   );
 }

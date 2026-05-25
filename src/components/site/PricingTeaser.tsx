@@ -1,10 +1,10 @@
 "use client";
 
-import { motion } from "framer-motion";
 import Link from "next/link";
 import { CheckCircle2 } from "lucide-react";
 import { SectionHeader } from "./SectionHeader";
 import { ScrollReveal } from "./ScrollReveal";
+import { MagicCard } from "./MagicCard";
 
 export function PricingTeaser() {
   return (
@@ -25,18 +25,14 @@ export function PricingTeaser() {
 
         <div className="mt-12 grid gap-6 md:grid-cols-2">
           <ScrollReveal>
-            <motion.div
-              whileHover={{ y: -8 }}
-              transition={{ type: "spring", stiffness: 280, damping: 22 }}
+            <MagicCard
               className="group relative overflow-hidden rounded-[2.5rem] p-10 text-white shadow-xl shadow-primary/10"
               style={{
                 background:
                   "linear-gradient(135deg, oklch(0.22 0.09 265), oklch(0.15 0.06 265))",
               }}
+              glowColor="100, 180, 255"
             >
-              {/* Shimmer overlay */}
-              <div className="absolute inset-0 opacity-0 transition-opacity duration-700 group-hover:opacity-100 animate-shimmer" />
-
               <div className="absolute -right-20 -top-20 h-64 w-64 rounded-full bg-primary/40 blur-3xl" />
               <div className="absolute -bottom-20 -left-20 h-48 w-48 rounded-full bg-accent/20 blur-3xl" />
 
@@ -69,15 +65,11 @@ export function PricingTeaser() {
               >
                 Book this service
               </Link>
-            </motion.div>
+            </MagicCard>
           </ScrollReveal>
 
           <ScrollReveal delay={0.1}>
-            <motion.div
-              whileHover={{ y: -8 }}
-              transition={{ type: "spring", stiffness: 280, damping: 22 }}
-              className="h-full rounded-[2.5rem] border border-border bg-surface p-10 shadow-sm transition-shadow duration-500 hover:shadow-lg hover:shadow-primary/5"
-            >
+            <MagicCard className="h-full rounded-[2.5rem] border border-border bg-surface p-10 shadow-sm">
               <span className="inline-block rounded-full bg-primary-light px-3 py-1 text-xs font-semibold text-primary">
                 Outside Jackson
               </span>
@@ -102,7 +94,7 @@ export function PricingTeaser() {
               >
                 Get exact quote
               </Link>
-            </motion.div>
+            </MagicCard>
           </ScrollReveal>
         </div>
       </div>

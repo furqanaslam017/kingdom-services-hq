@@ -1,9 +1,9 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { Check } from "lucide-react";
 import Link from "next/link";
 import { ScrollReveal } from "./ScrollReveal";
+import { MagicCard } from "./MagicCard";
 
 const FEATURES = [
   ["Same-Day Service Available", "Need it gone today? We'll make it happen."],
@@ -50,10 +50,9 @@ export function WhyChooseUs() {
         <div className="space-y-2">
           {FEATURES.map(([title, desc], i) => (
             <ScrollReveal key={title} delay={i * 0.08}>
-              <motion.div
-                whileHover={{ x: 4 }}
-                transition={{ type: "spring", stiffness: 400, damping: 25 }}
-                className="group flex items-start gap-4 rounded-2xl border border-border/50 bg-surface/50 px-5 py-5 transition-all duration-300 hover:border-primary/20 hover:bg-surface hover:shadow-md hover:shadow-primary/5"
+              <MagicCard
+                className="group flex items-start gap-4 rounded-2xl border border-border/50 bg-surface/50 px-5 py-5"
+                enableMagnetism={false}
               >
                 <span className="mt-0.5 grid h-9 w-9 shrink-0 place-items-center rounded-full bg-primary text-white shadow-md shadow-primary/20 transition-transform duration-300 group-hover:scale-110">
                   <Check className="h-4 w-4" />
@@ -64,7 +63,7 @@ export function WhyChooseUs() {
                   </h4>
                   <p className="mt-1 text-sm text-muted-foreground">{desc}</p>
                 </div>
-              </motion.div>
+              </MagicCard>
             </ScrollReveal>
           ))}
         </div>

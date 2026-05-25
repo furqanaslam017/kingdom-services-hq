@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { PhoneCall, CalendarCheck, CheckCircle } from "lucide-react";
 import { SectionHeader } from "./SectionHeader";
 import { ScrollReveal } from "./ScrollReveal";
+import { MagicCard } from "./MagicCard";
 
 const STEPS = [
   {
@@ -57,11 +58,7 @@ export function Process() {
             const Icon = s.icon;
             return (
               <ScrollReveal key={s.n} delay={i * 0.12}>
-                <motion.div
-                  whileHover={{ y: -4 }}
-                  transition={{ type: "spring", stiffness: 400, damping: 25 }}
-                  className="group relative overflow-hidden rounded-3xl border border-border bg-surface p-8 shadow-sm transition-shadow duration-500 hover:shadow-lg hover:shadow-primary/5"
-                >
+                <MagicCard className="group relative h-full rounded-3xl border border-border bg-surface p-8 shadow-sm">
                   {/* Step number watermark */}
                   <span className="font-display absolute -top-1 right-5 text-7xl leading-none text-primary/8 transition-colors group-hover:text-primary/12">
                     {s.n}
@@ -78,10 +75,7 @@ export function Process() {
                   <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
                     {s.desc}
                   </p>
-
-                  {/* Bottom accent line */}
-                  <div className="absolute bottom-0 left-0 h-1 w-full bg-gradient-to-r from-primary/0 via-primary/40 to-primary/0 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-                </motion.div>
+                </MagicCard>
               </ScrollReveal>
             );
           })}

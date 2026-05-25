@@ -3,6 +3,7 @@ import "./globals.css";
 import { Toaster } from "@/components/ui/sonner";
 import { Navbar } from "@/components/site/Navbar";
 import { Footer } from "@/components/site/Footer";
+import { CustomCursor } from "@/components/site/CustomCursor";
 import { QueryProvider } from "@/components/providers/QueryProvider";
 import { SessionProvider } from "@/components/providers/SessionProvider";
 
@@ -34,7 +35,8 @@ export default function RootLayout({
           crossOrigin="anonymous"
         />
       </head>
-      <body>
+      <body className="cursor-none">
+        <CustomCursor />
         <SessionProvider>
           <QueryProvider>
             <div className="flex min-h-screen flex-col bg-background text-foreground">

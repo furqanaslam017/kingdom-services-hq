@@ -1,11 +1,11 @@
 "use client";
 
-import { motion } from "framer-motion";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { SectionHeader } from "./SectionHeader";
 import { ScrollReveal } from "./ScrollReveal";
 import { SERVICES } from "@/lib/services";
+import { MagicCard } from "./MagicCard";
 
 export function ServicesGrid() {
   return (
@@ -29,14 +29,7 @@ export function ServicesGrid() {
             const Icon = s.icon;
             return (
               <ScrollReveal key={s.slug} delay={i * 0.07}>
-                <motion.div
-                  whileHover={{ y: -8 }}
-                  transition={{ type: "spring", stiffness: 300, damping: 22 }}
-                  className="glass-card group relative h-full overflow-hidden rounded-3xl p-8"
-                >
-                  {/* shimmer overlay on hover */}
-                  <div className="absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100 animate-shimmer" />
-
+                <MagicCard className="glass-card group h-full rounded-3xl p-8">
                   <div className="relative">
                     <div className="mb-5 grid h-14 w-14 place-items-center rounded-2xl bg-primary-light transition-colors duration-300 group-hover:bg-primary">
                       <Icon className="h-7 w-7 text-primary transition-colors duration-300 group-hover:text-white" />
@@ -54,7 +47,7 @@ export function ServicesGrid() {
                       Learn more <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1" />
                     </Link>
                   </div>
-                </motion.div>
+                </MagicCard>
               </ScrollReveal>
             );
           })}
